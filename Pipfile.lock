@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "40b1e83f6bd973ad0b1c59fca0035eeaf82ccf229321c972c0681acff35c04bc"
+            "sha256": "2ad8dda6b90a7ad0a8ec2ba05e805e34280bd67ede7c99b3d4781151b9323235"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -145,6 +145,21 @@
                 "sha256:ca4be454458f9dec299268d472aaa5a11f67a4ff70093396e1ceae9c76cf4bbb"
             ],
             "version": "==18.2.0"
+        },
+        "autohooks": {
+            "hashes": [
+                "sha256:1cee2cb93a01ecfc9dd2a7b5fb7aa2b0c8c336251e94cf33fd6cf25e2c5baa35"
+            ],
+            "index": "pypi",
+            "version": "==1.0.0"
+        },
+        "autohooks-plugin-black": {
+            "hashes": [
+                "sha256:5bd5479ac8b2dbfa43888389dddaa04a34693cb7a74392ff8b4879ef13811091",
+                "sha256:e6970dac37b1957d5d5d1bc2cf77c609347c5f9405f5c59d921138f26cd3c4bf"
+            ],
+            "index": "pypi",
+            "version": "==1.0.0"
         },
         "black": {
             "hashes": [
