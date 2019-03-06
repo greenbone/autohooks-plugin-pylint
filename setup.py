@@ -37,7 +37,7 @@ setup(
     description='Autohooks plugin for code linting via pylint',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/bjoernricks/autohooks-plugin-pylint',
+    url='https://github.com/greenbone/autohooks-plugin-pylint',
     packages=find_namespace_packages(include=['autohooks.*']),
     python_requires='>=3.5',
     install_requires=['autohooks', 'pylint'],
