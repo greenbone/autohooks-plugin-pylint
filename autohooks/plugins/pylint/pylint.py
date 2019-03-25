@@ -17,9 +17,11 @@
 
 import subprocess
 
-from autohooks.api import out
-from autohooks.api.path import is_python_path
+from autohooks.api import out, ok, fail
+from autohooks.api.path import match
 from autohooks.api.git import get_staged_status, stash_unstaged_changes
+
+DEFAULT_INCLUDE = ('*.py',)
 
 
 def check_pylint_installed():
@@ -32,15 +34,41 @@ def check_pylint_installed():
         )
 
 
-def precommit():
+def get_pylint_config(config):
+    return config.get('tool').get('autohooks').get('plugins').get('pylint')
+
+
+def get_include_from_config(config):
+    if not config:
+        return DEFAULT_INCLUDE
+
+    pylint_config = get_pylint_config(config)
+    include = pylint_config.get_value('include', DEFAULT_INCLUDE)
+
+    if isinstance(include, str):
+        return [include]
+
+    return include
+
+
+def precommit(config=None, **kwargs):
     out('Running pylint pre-commit hook')
 
     check_pylint_installed()
 
-    files = [f for f in get_staged_status() if is_python_path(f.path)]
+    include = get_include_from_config(config)
+    files = [f for f in get_staged_status() if match(f.path, include)]
 
     with stash_unstaged_changes(files):
         args = ['pylint']
         args.extend([str(f.absolute_path()) for f in files])
 
-        return subprocess.call(args)
+        status = subprocess.call(args)
+        str_files = ', '.join([str(f.path) for f in files])
+
+        if status:
+            fail('Linting error(s) found in {}'.format(str_files))
+        else:
+            ok('Linting {} was successful'.format(str_files))
+
+        return status
