@@ -59,6 +59,10 @@ def precommit(config=None, **kwargs):
     include = get_include_from_config(config)
     files = [f for f in get_staged_status() if match(f.path, include)]
 
+    if len(files) == 0:
+        ok('No files to lint')
+        return 0
+
     with stash_unstaged_changes(files):
         args = ['pylint']
         args.extend([str(f.absolute_path()) for f in files])
