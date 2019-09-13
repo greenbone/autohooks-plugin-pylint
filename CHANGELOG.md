@@ -6,11 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added
-### Changed
-### Deprecated
 ### Fixed
-### Removed
+
+* Don't run pylint if not files have to validates [#4](https://github.com/greenbone/autohooks-plugin-pylint/pull/4)
 
 ## [1.1.0] - 2019-03-28
 
