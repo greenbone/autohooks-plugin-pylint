@@ -59,7 +59,7 @@ def precommit(config=None, **kwargs):
     include = get_include_from_config(config)
     files = [f for f in get_staged_status() if match(f.path, include)]
 
-    if len(files) == 0:
+    if not files:
         ok('No files to lint')
         return 0
 
