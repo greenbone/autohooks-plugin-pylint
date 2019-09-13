@@ -19,7 +19,7 @@ and [PEP440](https://www.python.org/dev/peps/pep-0440/).
 
 * Open [setup.py](setup.py) and increment the version number
 
-* Update [CHANGELOG](CHANGELOG.md)
+* Update [CHANGELOG](CHANGELOG.md) and set release version, date and link to diff
 
 * Create distribution files
 
