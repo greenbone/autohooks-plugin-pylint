@@ -8,5 +8,5 @@ pylint = "*"
 autohooks = ">=1.1"
 
 [dev-packages]
-black = "==18.9b"
+black = "==19.10b0"
 autohooks-plugin-black = "*"
