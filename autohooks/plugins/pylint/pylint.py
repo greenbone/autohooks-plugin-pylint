@@ -26,7 +26,7 @@ DEFAULT_INCLUDE = ('*.py',)
 
 def check_pylint_installed():
     try:
-        import pylint
+        import pylint  # pylint: disable=import-outside-toplevel
     except ImportError:
         raise Exception(
             'Could not find pylint. Please add pylint to your python '
@@ -51,7 +51,7 @@ def get_include_from_config(config):
     return include
 
 
-def precommit(config=None, **kwargs):
+def precommit(config=None, **kwargs):  # pylint: disable=unused-argument
     check_pylint_installed()
 
     include = get_include_from_config(config)
