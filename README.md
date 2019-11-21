@@ -49,6 +49,19 @@ pre-commit = ["autohooks.plugins.pylint"]
 include = ['foo/*.py', '*.foo']
 ```
 
+By default, autohooks plugin pylint executes pylint without any arguments and
+pylint settings are loaded from the *.pylintrc* file in the root directory of
+git repository. To change specific settings or to define a different pylint rc
+file the following plugin configuration can be used:
+
+```toml
+[tool.autohooks]
+pre-commit = ["autohooks.plugins.pylint"]
+
+[tool.autohooks.plugins.pylint]
+arguments = ["--rcfile=/path/to/pylintrc", "-s", "n"]
+```
+
 ## Maintainer
 
 This project is maintained by [Greenbone Networks GmbH](https://www.greenbone.net/).
