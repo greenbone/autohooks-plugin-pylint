@@ -17,7 +17,7 @@
 
 import subprocess
 
-from autohooks.api import out, ok, fail
+from autohooks.api import ok, fail
 from autohooks.api.path import match
 from autohooks.api.git import get_staged_status, stash_unstaged_changes
 
@@ -52,15 +52,13 @@ def get_include_from_config(config):
 
 
 def precommit(config=None, **kwargs):
-    out('Running pylint pre-commit hook')
-
     check_pylint_installed()
 
     include = get_include_from_config(config)
     files = [f for f in get_staged_status() if match(f.path, include)]
 
     if not files:
-        ok('No files to lint')
+        ok('No staged files to lint.')
         return 0
 
     with stash_unstaged_changes(files):
@@ -71,8 +69,8 @@ def precommit(config=None, **kwargs):
         str_files = ', '.join([str(f.path) for f in files])
 
         if status:
-            fail('Linting error(s) found in {}'.format(str_files))
+            fail('Linting error(s) found in {}.'.format(str_files))
         else:
-            ok('Linting {} was successful'.format(str_files))
+            ok('Linting {} was successful.'.format(str_files))
 
         return status
