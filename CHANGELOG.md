@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+* Allow to configure the arguments for pylint in *pyproject.toml* [#10](https://github.com/greenbone/autohooks-plugin-pylint/pull/10)
+
 ## [1.1.1] - 2019-09-13
 
 ### Fixed
