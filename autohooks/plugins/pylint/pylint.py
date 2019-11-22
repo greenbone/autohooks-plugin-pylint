@@ -17,16 +17,17 @@
 
 import subprocess
 
-from autohooks.api import out, ok, fail
+from autohooks.api import ok, fail
 from autohooks.api.path import match
 from autohooks.api.git import get_staged_status, stash_unstaged_changes
 
 DEFAULT_INCLUDE = ('*.py',)
+DEFAULT_ARGUMENTS = []
 
 
 def check_pylint_installed():
     try:
-        import pylint
+        import pylint  # pylint: disable=import-outside-toplevel
     except ImportError:
         raise Exception(
             'Could not find pylint. Please add pylint to your python '
@@ -38,41 +39,60 @@ def get_pylint_config(config):
     return config.get('tool').get('autohooks').get('plugins').get('pylint')
 
 
+def ensure_iterable(value):
+    if isinstance(value, str):
+        return [value]
+
+    return value
+
+
 def get_include_from_config(config):
     if not config:
         return DEFAULT_INCLUDE
 
     pylint_config = get_pylint_config(config)
-    include = pylint_config.get_value('include', DEFAULT_INCLUDE)
-
-    if isinstance(include, str):
-        return [include]
+    include = ensure_iterable(
+        pylint_config.get_value('include', DEFAULT_INCLUDE)
+    )
 
     return include
 
 
-def precommit(config=None, **kwargs):
-    out('Running pylint pre-commit hook')
+def get_pylint_arguments(config):
+    if not config:
+        return DEFAULT_ARGUMENTS
 
+    pylint_config = get_pylint_config(config)
+    arguments = ensure_iterable(
+        pylint_config.get_value('arguments', DEFAULT_ARGUMENTS)
+    )
+
+    return arguments
+
+
+def precommit(config=None, **kwargs):  # pylint: disable=unused-argument
     check_pylint_installed()
 
     include = get_include_from_config(config)
     files = [f for f in get_staged_status() if match(f.path, include)]
 
     if not files:
-        ok('No files to lint')
+        ok('No staged files to lint.')
         return 0
+
+    arguments = get_pylint_arguments(config)
 
     with stash_unstaged_changes(files):
         args = ['pylint']
+        args.extend(arguments)
         args.extend([str(f.absolute_path()) for f in files])
 
         status = subprocess.call(args)
         str_files = ', '.join([str(f.path) for f in files])
 
         if status:
-            fail('Linting error(s) found in {}'.format(str_files))
+            fail('Linting error(s) found in {}.'.format(str_files))
         else:
-            ok('Linting {} was successful'.format(str_files))
+            ok('Linting {} was successful.'.format(str_files))
 
         return status
