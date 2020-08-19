@@ -22,7 +22,7 @@ Python 2 is also available the correct command may be `pip3`.
 ### Install using poetry
 
 It is highly encouraged to use [poetry](https://python-poetry.org) for
-maintaining your project's dependencies. Normally autohooks-plugin-black is
+maintaining your project's dependencies. Normally autohooks-plugin-isort is
 installed as a development dependency.
 
     poetry install
