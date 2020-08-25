@@ -17,7 +17,7 @@
 
 import subprocess
 
-from autohooks.api import ok, fail
+from autohooks.api import ok, error
 from autohooks.api.path import match
 from autohooks.api.git import get_staged_status, stash_unstaged_changes
 
@@ -27,12 +27,12 @@ DEFAULT_ARGUMENTS = []
 
 def check_pylint_installed():
     try:
-        import pylint  # pylint: disable=import-outside-toplevel
-    except ImportError:
+        import pylint  # pylint: disable=import-outside-toplevel, disable=unused-import
+    except ImportError as e:
         raise Exception(
             'Could not find pylint. Please add pylint to your python '
             'environment'
-        )
+        ) from e
 
 
 def get_pylint_config(config):
@@ -83,16 +83,14 @@ def precommit(config=None, **kwargs):  # pylint: disable=unused-argument
     arguments = get_pylint_arguments(config)
 
     with stash_unstaged_changes(files):
-        args = ['pylint']
-        args.extend(arguments)
-        args.extend([str(f.absolute_path()) for f in files])
-
-        status = subprocess.call(args)
-        str_files = ', '.join([str(f.path) for f in files])
-
-        if status:
-            fail('Linting error(s) found in {}.'.format(str_files))
-        else:
-            ok('Linting {} was successful.'.format(str_files))
+        for f in files:
+            args = ['pylint']
+            args.extend(arguments)
+            args.append(str(f.absolute_path()))
+            status = subprocess.call(args)
+            if status:
+                error('Linting error(s) found in {}.'.format(str(f.path)))
+            else:
+                ok('Linting {} was successful.'.format(str(f.path)))
 
         return status
