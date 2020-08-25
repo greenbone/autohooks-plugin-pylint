@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import subprocess
+import sys
 
 from autohooks.api import ok, error, out
 from autohooks.api.path import match
@@ -92,7 +93,9 @@ def precommit(config=None, **kwargs):  # pylint: disable=unused-argument
             )
             out_, _ = proc.communicate()
             if out_:
-                out_ = out_.decode(encoding='utf-8').split('\n')
+                out_ = out_.decode(
+                    encoding=sys.getdefaultencoding(), errors='redirect'
+                ).split('\n')
                 for line in out_:
                     out(line)
             if proc.returncode:
