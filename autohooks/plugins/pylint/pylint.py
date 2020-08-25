@@ -16,8 +16,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import subprocess
+import sys
 
-from autohooks.api import ok, error
+from io import StringIO
+from autohooks.api import ok, error, out
 from autohooks.api.path import match
 from autohooks.api.git import get_staged_status, stash_unstaged_changes
 
@@ -87,7 +89,13 @@ def precommit(config=None, **kwargs):  # pylint: disable=unused-argument
             args = ['pylint']
             args.extend(arguments)
             args.append(str(f.absolute_path()))
+            stdout_file = sys.stdout
+            pylint_out = StringIO()
+            sys.stdout = pylint_out
             status = subprocess.call(args)
+            sys.stdout = stdout_file
+            for line in pylint_out.readlines():
+                out(line)
             if status:
                 error('Linting error(s) found in {}.'.format(str(f.path)))
             else:
