@@ -94,7 +94,7 @@ def precommit(config=None, **kwargs):  # pylint: disable=unused-argument
             out_, _ = proc.communicate()
             if out_:
                 out_ = out_.decode(
-                    encoding=sys.getdefaultencoding(), errors='redirect'
+                    encoding=sys.getdefaultencoding(), errors='replace'
                 ).split('\n')
                 for line in out_:
                     out(line)
