@@ -16,15 +16,13 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import subprocess
-import sys
 
-from io import StringIO
 from autohooks.api import ok, error, out
 from autohooks.api.path import match
 from autohooks.api.git import get_staged_status, stash_unstaged_changes
 
 DEFAULT_INCLUDE = ('*.py',)
-DEFAULT_ARGUMENTS = []
+DEFAULT_ARGUMENTS = ['--output-format=colorized']
 
 
 def check_pylint_installed():
@@ -86,19 +84,20 @@ def precommit(config=None, **kwargs):  # pylint: disable=unused-argument
 
     with stash_unstaged_changes(files):
         for f in files:
-            args = ['pylint']
-            args.extend(arguments)
-            args.append(str(f.absolute_path()))
-            stdout_file = sys.stdout
-            pylint_out = StringIO()
-            sys.stdout = pylint_out
-            status = subprocess.call(args)
-            sys.stdout = stdout_file
-            for line in pylint_out.readlines():
-                out(line)
-            if status:
+            cmd = ['pylint']
+            cmd.extend(arguments)
+            cmd.append(str(f.absolute_path()))
+            proc = subprocess.Popen(
+                cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+            )
+            out_, _ = proc.communicate()
+            if out_:
+                out_ = out_.decode(encoding='utf-8').split('\n')
+                for line in out_:
+                    out(line)
+            if proc.returncode:
                 error('Linting error(s) found in {}.'.format(str(f.path)))
             else:
                 ok('Linting {} was successful.'.format(str(f.path)))
 
-        return status
+        return proc.returncode
