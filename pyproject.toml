@@ -1,10 +1,14 @@
 [build-system]
 requires = ["poetry>=0.12"]
+version = "1.2.0"
 build-backend = "poetry.masonry.api"
+authors = ["Greenbone Networks <info@greenbone.net>"]
+readme = "README.md"
+license = "AGPL-3.0-or-later"
 
 [tool.poetry]
 name = "autohooks-plugin-pylint"
-version = "20.4dev1"
+version = "20.4.dev1"
 description = "An autohooks plugin for python code linting via pylint" 
 license = "GPL-3.0-or-later"
 authors = ["Greenbone Networks GmbH <info@greenbone.net>"]
@@ -49,6 +53,7 @@ autohooks = ">=1.1"
 [tool.poetry.dev-dependencies]
 black = {version = "20.8b1", python = "^3.6"}
 pylint = "^2.4.4"
+pontos = {version="^0.3.0", python = "^3.7"}
 
 [tool.black]
 line-length = 80
@@ -72,3 +77,7 @@ exclude = '''
 [tool.autohooks]
 mode = "poetry"
 pre-commit = ['autohooks.plugins.black', 'autohooks.plugins.pylint']
+
+
+[tool.pontos.version]
+version-module-file = "autohooks/plugins/pylint/__version__.py"
