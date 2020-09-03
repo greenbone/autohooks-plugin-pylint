@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+* Adding pontos module for future releases [#24](https://github.com/greenbone/autohooks-plugin-pylint/pull/24)
+
 ### Changed
 
 * Replaced pipenv with poetry for dependency management. poetry install works a bit different than pipenv install. It installs dev packages. [#16](https://github.com/greenbone/autohooks-plugin-pylint/pull/16)
