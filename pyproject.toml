@@ -7,7 +7,7 @@ license = "AGPL-3.0-or-later"
 
 [tool.poetry]
 name = "autohooks-plugin-pylint"
-version = "20.9.0.dev1"
+version = "20.11.0"
 description = "An autohooks plugin for python code linting via pylint" 
 license = "GPL-3.0-or-later"
 authors = ["Greenbone Networks GmbH <info@greenbone.net>"]
