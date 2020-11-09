@@ -73,6 +73,7 @@ class AutohooksPylintTestCase(TestCase):
 
     def test_precommit(self):
         term = Terminal()
+        get_staged_status = MagicMock(return_value=[])
         _set_terminal(term)
         ret = precommit()
         print(ret)
