@@ -1,8 +1,9 @@
-from io import StringIO, BytesIO, FileIO
+# pylint: disable-all
+from io import StringIO, BytesIO, FileIO  # pylint: disable=unused-import
 import sys
 
 cmd = ['pylint', 'autohooks/plugins/pylint/pylint.py']
-import subprocess
+import subprocess  # pylint: disable=
 
 # status = subprocess.call(cmd)
 iofile = 'tmp.txt'
