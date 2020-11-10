@@ -71,24 +71,17 @@ class AutohooksPylintTestCase(TestCase):
         include = get_include_from_config(config=None)
         self.assertEqual(include, DEFAULT_INCLUDE)
 
-    def test_precommit(self):
-        term = Terminal()
-        get_status = Mock(return_value=[])
-        _set_terminal(term)
+    @patch('autohooks.plugins.pylint.pylint.ok')
+    def test_precommit(self, ok_mock):
         ret = precommit()
         self.assertFalse(ret)
 
-    # @patch('autohooks.api.git.get_staged_status')
-    def test_precommit_staged(self):
-        term = Terminal()
-        get_staged_status = Mock(
-            return_value=[
-                StatusEntry(
-                    'A lint_test.py',
-                )
-            ]
-        )
-        # print(get_status())
-        _set_terminal(term)
+    # these Terminal output functions don't run in the CI ...
+    @patch('autohooks.plugins.pylint.pylint.ok')
+    @patch('autohooks.plugins.pylint.pylint.out')
+    @patch('autohooks.plugins.pylint.pylint.error')
+    @patch('autohooks.plugins.pylint.pylint.get_staged_status')
+    def test_precommit_staged(self, staged_mock, error_mock, out_mock, ok_mock):
+        staged_mock.return_value = [StatusEntry('M  lint_test.py')]
         ret = precommit()
-        print(ret)
+        self.assertTrue(ret)

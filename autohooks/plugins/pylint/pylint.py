@@ -81,7 +81,6 @@ def precommit(config=None, **kwargs):  # pylint: disable=unused-argument
         return 0
 
     arguments = get_pylint_arguments(config)
-
     with stash_unstaged_changes(files):
         for f in files:
             cmd = ['pylint']
