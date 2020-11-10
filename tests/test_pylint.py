@@ -17,7 +17,7 @@
 # pylint: disable-all
 import sys
 from unittest import TestCase
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch, MagicMock, Mock
 from io import StringIO
 
 from pathlib import Path
@@ -73,21 +73,22 @@ class AutohooksPylintTestCase(TestCase):
 
     def test_precommit(self):
         term = Terminal()
-        get_staged_status = MagicMock(return_value=[])
+        get_status = Mock(return_value=[])
         _set_terminal(term)
         ret = precommit()
-        print(ret)
+        self.assertFalse(ret)
 
-    @patch('autohooks.api.git.get_staged_status')
-    def test_precommit_staged(self, staged_mock):
+    # @patch('autohooks.api.git.get_staged_status')
+    def test_precommit_staged(self):
         term = Terminal()
-        get_staged_status = MagicMock(
+        get_staged_status = Mock(
             return_value=[
                 StatusEntry(
                     'A lint_test.py',
                 )
             ]
         )
+        # print(get_status())
         _set_terminal(term)
         ret = precommit()
         print(ret)
