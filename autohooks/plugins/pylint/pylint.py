@@ -76,11 +76,13 @@ def precommit(config=None, **kwargs):  # pylint: disable=unused-argument
 
     include = get_include_from_config(config)
     files = [f for f in get_staged_status() if match(f.path, include)]
+
     if not files:
         ok('No staged files to lint.')
         return 0
 
     arguments = get_pylint_arguments(config)
+
     with stash_unstaged_changes(files):
         for f in files:
             cmd = ['pylint']
