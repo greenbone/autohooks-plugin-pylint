@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+
+[Unreleased]: https://github.com/greenbone/autohooks-plugin-pylint/compare/v20.11.0...HEAD
+
+
+## [20.11.0] - 2020-11-09
 
 ### Added
 * Adding pontos module for future releases [#24](https://github.com/greenbone/autohooks-plugin-pylint/pull/24)
@@ -15,10 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Replaced pipenv with poetry for dependency management. poetry install works a bit different than pipenv install. It installs dev packages. [#16](https://github.com/greenbone/autohooks-plugin-pylint/pull/16)
 * Linting file by file [#19](https://github.com/greenbone/autohooks-plugin-pylint/pull/19)
 
-### Fixed
-### Removed
-
-[Unreleased]: https://github.com/greenbone/autohooks-plugin-pylint/compare/v1.2.0...master
+[20.11.0]: https://github.com/greenbone/autohooks-plugin-pylint/compare/v1.2.0...v20.11.0
 
 ## [1.2.0] - 2019-11-22
 
