@@ -83,7 +83,9 @@ class AutohooksPylintTestCase(TestCase):
     @patch('autohooks.plugins.pylint.pylint.out')
     @patch('autohooks.plugins.pylint.pylint.error')
     @patch('autohooks.plugins.pylint.pylint.get_staged_status')
-    def test_precommit_staged(self, staged_mock, _error_mock, _out_mock, _ok_mock):
+    def test_precommit_staged(
+        self, staged_mock, _error_mock, _out_mock, _ok_mock
+    ):
         staged_mock.return_value = [StatusEntry('M  lint_test.py')]
         ret = precommit()
         self.assertTrue(ret)
