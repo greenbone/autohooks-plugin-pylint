@@ -15,12 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # pylint: disable-all
-import sys
-from unittest import TestCase
-from unittest.mock import patch, MagicMock, Mock
-from io import StringIO
 
-from pathlib import Path
+import sys
+
+from io import StringIO
+from pathlib import Pathf
+rom unittest import TestCase
+from unittest.mock import patch, MagicMock, Mock
+
 from autohooks.config import load_config_from_pyproject_toml
 from autohooks.terminal import Terminal
 from autohooks.api import _set_terminal
@@ -72,7 +74,7 @@ class AutohooksPylintTestCase(TestCase):
         self.assertEqual(include, DEFAULT_INCLUDE)
 
     @patch('autohooks.plugins.pylint.pylint.ok')
-    def test_precommit(self, ok_mock):
+    def test_precommit(self, _ok_mock):
         ret = precommit()
         self.assertFalse(ret)
 
@@ -81,7 +83,7 @@ class AutohooksPylintTestCase(TestCase):
     @patch('autohooks.plugins.pylint.pylint.out')
     @patch('autohooks.plugins.pylint.pylint.error')
     @patch('autohooks.plugins.pylint.pylint.get_staged_status')
-    def test_precommit_staged(self, staged_mock, error_mock, out_mock, ok_mock):
+    def test_precommit_staged(self, staged_mock, _error_mock, _out_mock, _ok_mock):
         staged_mock.return_value = [StatusEntry('M  lint_test.py')]
         ret = precommit()
         self.assertTrue(ret)
