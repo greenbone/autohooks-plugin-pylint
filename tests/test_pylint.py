@@ -69,6 +69,10 @@ class AutohooksPylintTestCase(TestCase):
         bar = ensure_iterable(foo)  # pylint: disable=blacklisted-name
         self.assertEqual(bar, ['bar'])
 
+        foo = ['bar']
+        bar = ensure_iterable(foo)  # pylint: disable=blacklisted-name
+        self.assertEqual(bar, ['bar'])
+
     def test_get_include_from_config(self):
         include = get_include_from_config(config=None)
         self.assertEqual(include, DEFAULT_INCLUDE)
