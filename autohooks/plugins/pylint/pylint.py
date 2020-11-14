@@ -100,7 +100,7 @@ def precommit(config=None, **kwargs):  # pylint: disable=unused-argument
                 for line in out_:
                     out(line)
             if proc.returncode:
-                ret = 1
+                ret = proc.returncode
                 error('Linting error(s) found in {}.'.format(str(f.path)))
             else:
                 ok('Linting {} was successful.'.format(str(f.path)))
