@@ -84,6 +84,7 @@ def precommit(config=None, **kwargs):  # pylint: disable=unused-argument
     arguments = get_pylint_arguments(config)
 
     with stash_unstaged_changes(files):
+        ret = 0
         for f in files:
             cmd = ['pylint']
             cmd.extend(arguments)
@@ -99,8 +100,9 @@ def precommit(config=None, **kwargs):  # pylint: disable=unused-argument
                 for line in out_:
                     out(line)
             if proc.returncode:
+                ret = proc.returncode
                 error('Linting error(s) found in {}.'.format(str(f.path)))
             else:
                 ok('Linting {} was successful.'.format(str(f.path)))
 
-        return proc.returncode
+        return ret
