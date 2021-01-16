@@ -90,6 +90,11 @@ class AutohooksPylintTestCase(TestCase):
     def test_precommit_staged(
         self, staged_mock, _error_mock, _out_mock, _ok_mock
     ):
-        staged_mock.return_value = [StatusEntry('M  lint_test.py')]
+        staged_mock.return_value = [
+            StatusEntry(
+                status_string='M  tests/lint_test.py',
+                root_path=Path(__file__).parent,
+            )
+        ]
         ret = precommit()
         self.assertTrue(ret)
