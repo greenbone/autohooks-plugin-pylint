@@ -46,9 +46,11 @@ def get_test_config_path(name):
 
 class AutohooksPylintTestCase(TestCase):
     def test_pylint_installed(self):
+        pylint = sys.modules['pylint']
         sys.modules['pylint'] = None
         with self.assertRaises(Exception):
             check_pylint_installed()
+        sys.modules['pylint'] = pylint
 
     def test_get_pylint_arguments(self):
         args = get_pylint_arguments(config=None)
@@ -78,23 +80,56 @@ class AutohooksPylintTestCase(TestCase):
         self.assertEqual(include, DEFAULT_INCLUDE)
 
     @patch('autohooks.plugins.pylint.pylint.ok')
-    def test_precommit(self, _ok_mock):
+    def test_precommit_no_files(self, _ok_mock):
         ret = precommit()
         self.assertFalse(ret)
 
     # these Terminal output functions don't run in the CI ...
+    # @patch('sys.stdout', new_callable=StringIO)
     @patch('autohooks.plugins.pylint.pylint.ok')
     @patch('autohooks.plugins.pylint.pylint.out')
     @patch('autohooks.plugins.pylint.pylint.error')
     @patch('autohooks.plugins.pylint.pylint.get_staged_status')
-    def test_precommit_staged(
-        self, staged_mock, _error_mock, _out_mock, _ok_mock
+    def test_precommit_errors(
+        self,
+        staged_mock,
+        _error_mock,
+        _out_mock,
+        _ok_mock,  # _mock_stdout
     ):
         staged_mock.return_value = [
             StatusEntry(
-                status_string='M  tests/lint_test.py',
+                status_string='M  lint_test.py',
                 root_path=Path(__file__).parent,
             )
         ]
+
         ret = precommit()
+
+        # Returncode != 0 -> errors
         self.assertTrue(ret)
+
+    # these Terminal output functions don't run in the CI ...
+    # @patch('sys.stdout', new_callable=StringIO)
+    @patch('autohooks.plugins.pylint.pylint.ok')
+    @patch('autohooks.plugins.pylint.pylint.out')
+    @patch('autohooks.plugins.pylint.pylint.error')
+    @patch('autohooks.plugins.pylint.pylint.get_staged_status')
+    def test_precommit_ok(
+        self,
+        staged_mock,
+        _error_mock,
+        _out_mock,
+        _ok_mock,  # _mock_stdout
+    ):
+        staged_mock.return_value = [
+            StatusEntry(
+                status_string='M  test_pylint.py',
+                root_path=Path(__file__).parent,
+            )
+        ]
+
+        ret = precommit()
+
+        # Returncode 0 -> no errors
+        self.assertFalse(ret)
