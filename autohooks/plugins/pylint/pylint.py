@@ -98,7 +98,8 @@ def precommit(config=None, **kwargs):  # pylint: disable=unused-argument
                 lint_errors = e.stdout.decode(
                     encoding=sys.getdefaultencoding(), errors='replace'
                 ).split('\n')
-                for line in lint_errors:
+                # Skip the first line that only shows ******** Module blah
+                for line in lint_errors[1:]:
                     out(line)
             else:
                 ok('Linting {} was successful.'.format(str(f.path)))
