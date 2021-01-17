@@ -75,6 +75,7 @@ def precommit(config=None, **kwargs):  # pylint: disable=unused-argument
     check_pylint_installed()
 
     include = get_include_from_config(config)
+
     files = [f for f in get_staged_status() if match(f.path, include)]
 
     if not files:
@@ -89,19 +90,16 @@ def precommit(config=None, **kwargs):  # pylint: disable=unused-argument
             cmd = ['pylint']
             cmd.extend(arguments)
             cmd.append(str(f.absolute_path()))
-            proc = subprocess.Popen(
-                cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE
-            )
-            out_, _ = proc.communicate()
-            if out_:
-                out_ = out_.decode(
+            try:
+                subprocess.run(cmd, check=True, capture_output=True)
+            except subprocess.CalledProcessError as e:
+                ret = e.returncode
+                error('Linting error(s) found in {}:'.format(str(f.path)))
+                lint_errors = e.stdout.decode(
                     encoding=sys.getdefaultencoding(), errors='replace'
                 ).split('\n')
-                for line in out_:
+                for line in lint_errors:
                     out(line)
-            if proc.returncode:
-                ret = proc.returncode
-                error('Linting error(s) found in {}.'.format(str(f.path)))
             else:
                 ok('Linting {} was successful.'.format(str(f.path)))
 
