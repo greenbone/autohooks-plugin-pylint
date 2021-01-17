@@ -97,6 +97,27 @@ class AutohooksPylintTestCase(TestCase):
         _out_mock,
         _ok_mock,  # _mock_stdout
     ):
+
+        code = (
+            "from io import StringIO, BytesIO, FileIO"
+            "import sys"
+            "cmd = ['pylint', 'autohooks/plugins/pylint/pylint.py']"
+            "import subprocess  # pylint: disable="
+            "# status = subprocess.call(cmd)"
+            "iofile = 'tmp.txt'"
+            "# status = subprocess.call(cmd, stdout=iofile)"
+            "# blah blah lots of code ..."
+            "status = subprocess.Popen("
+            "    cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)"
+            "out, err = status.communicate()"
+            "print(out.decode(encoding='utf-8'))"
+            "print(err.decode(encoding='utf-8'))"
+        )
+
+        test_file = Path(__file__).parent / "lint_test.py"
+        with open(test_file, 'a') as fp:
+            fp.writelines(code)
+
         staged_mock.return_value = [
             StatusEntry(
                 status_string='M  lint_test.py',
@@ -108,6 +129,7 @@ class AutohooksPylintTestCase(TestCase):
 
         # Returncode != 0 -> errors
         self.assertTrue(ret)
+        test_file.unlink()
 
     # these Terminal output functions don't run in the CI ...
     # @patch('sys.stdout', new_callable=StringIO)
