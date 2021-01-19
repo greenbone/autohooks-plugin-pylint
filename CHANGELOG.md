@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 ### Changed
+* Reworked file by file linting, improved the code and the tests. [#54](https://github.com/greenbone/autohooks-plugin-pylint/pull/54)
+
 ### Deprecated
 ### Removed
 ### Fixed
