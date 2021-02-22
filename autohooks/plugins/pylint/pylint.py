@@ -1,4 +1,4 @@
-# Copyright (C) 2019 Greenbone Networks GmbH
+# Copyright (C) 2019 - 2021 Greenbone Networks GmbH
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
@@ -75,6 +75,7 @@ def precommit(config=None, **kwargs):  # pylint: disable=unused-argument
     check_pylint_installed()
 
     include = get_include_from_config(config)
+
     files = [f for f in get_staged_status() if match(f.path, include)]
 
     if not files:
@@ -84,23 +85,23 @@ def precommit(config=None, **kwargs):  # pylint: disable=unused-argument
     arguments = get_pylint_arguments(config)
 
     with stash_unstaged_changes(files):
+        ret = 0
         for f in files:
             cmd = ['pylint']
             cmd.extend(arguments)
             cmd.append(str(f.absolute_path()))
-            proc = subprocess.Popen(
-                cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE
-            )
-            out_, _ = proc.communicate()
-            if out_:
-                out_ = out_.decode(
+            try:
+                subprocess.run(cmd, check=True, capture_output=True)
+            except subprocess.CalledProcessError as e:
+                ret = e.returncode
+                error('Linting error(s) found in {}:'.format(str(f.path)))
+                lint_errors = e.stdout.decode(
                     encoding=sys.getdefaultencoding(), errors='replace'
                 ).split('\n')
-                for line in out_:
+                # Skip the first line that only shows ******** Module blah
+                for line in lint_errors[1:]:
                     out(line)
-            if proc.returncode:
-                error('Linting error(s) found in {}.'.format(str(f.path)))
             else:
                 ok('Linting {} was successful.'.format(str(f.path)))
 
-        return proc.returncode
+        return ret
