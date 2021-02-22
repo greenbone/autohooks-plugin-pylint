@@ -8,17 +8,16 @@ python-versions = "*"
 
 [[package]]
 name = "astroid"
-version = "2.4.2"
+version = "2.5"
 description = "An abstract syntax tree for Python with inference support."
 category = "main"
 optional = false
-python-versions = ">=3.5"
+python-versions = ">=3.6"
 
 [package.dependencies]
-lazy-object-proxy = ">=1.4.0,<1.5.0"
-six = ">=1.12,<2.0"
+lazy-object-proxy = ">=1.4.0"
 typed-ast = {version = ">=1.4.0,<1.5", markers = "implementation_name == \"cpython\" and python_version < \"3.8\""}
-wrapt = ">=1.11,<2.0"
+wrapt = ">=1.11,<1.13"
 
 [[package]]
 name = "autohooks"
@@ -189,18 +188,21 @@ tomlkit = ">=0.5.11,<0.6.0"
 
 [[package]]
 name = "pylint"
-version = "2.6.0"
+version = "2.7.0"
 description = "python code static checker"
 category = "main"
 optional = false
-python-versions = ">=3.5.*"
+python-versions = "~=3.6"
 
 [package.dependencies]
-astroid = ">=2.4.0,<=2.5"
+astroid = "2.5.0"
 colorama = {version = "*", markers = "sys_platform == \"win32\""}
 isort = ">=4.2.5,<6"
 mccabe = ">=0.6,<0.7"
 toml = ">=0.7.1"
+
+[package.extras]
+docs = ["sphinx (>=3.2,<4.0)", "python-docs-theme"]
 
 [[package]]
 name = "pyparsing"
@@ -235,14 +237,6 @@ urllib3 = ">=1.21.1,<1.27"
 [package.extras]
 security = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)"]
 socks = ["PySocks (>=1.5.6,!=1.5.7)", "win-inet-pton"]
-
-[[package]]
-name = "six"
-version = "1.15.0"
-description = "Python 2 and 3 compatibility utilities"
-category = "main"
-optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 
 [[package]]
 name = "toml"
@@ -300,7 +294,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "ec746b769c66dde8d9e0431e31e1e245cb6c4041a25ed552cba1b07c47231a7f"
+content-hash = "a54d1a57c760be217fbd0663c99591f1744eb27173cfc9e24cda7939da95fe72"
 
 [metadata.files]
 appdirs = [
@@ -308,8 +302,8 @@ appdirs = [
     {file = "appdirs-1.4.4.tar.gz", hash = "sha256:7d5d0167b2b1ba821647616af46a749d1c653740dd0d2415100fe26e27afdf41"},
 ]
 astroid = [
-    {file = "astroid-2.4.2-py3-none-any.whl", hash = "sha256:bc58d83eb610252fd8de6363e39d4f1d0619c894b0ed24603b881c02e64c7386"},
-    {file = "astroid-2.4.2.tar.gz", hash = "sha256:2f4078c2a41bf377eea06d71c9d2ba4eb8f6b1af2135bec27bbbb7d8f12bb703"},
+    {file = "astroid-2.5-py3-none-any.whl", hash = "sha256:87ae7f2398b8a0ae5638ddecf9987f081b756e0e9fc071aeebdca525671fc4dc"},
+    {file = "astroid-2.5.tar.gz", hash = "sha256:b31c92f545517dcc452f284bc9c044050862fbe6d93d2b3de4a215a6b384bf0d"},
 ]
 autohooks = [
     {file = "autohooks-2.2.0-py3-none-any.whl", hash = "sha256:9c7b1117ebace5f7edb3352ea7951dc09cfab8a1f8331ae4157da11cdf66f280"},
@@ -394,8 +388,8 @@ pontos = [
     {file = "pontos-21.2.0.tar.gz", hash = "sha256:380792fdec2893aff28f7bc440b2213016ac863ce34f7cc62acb6b969ee8725b"},
 ]
 pylint = [
-    {file = "pylint-2.6.0-py3-none-any.whl", hash = "sha256:bfe68f020f8a0fece830a22dd4d5dddb4ecc6137db04face4c3420a46a52239f"},
-    {file = "pylint-2.6.0.tar.gz", hash = "sha256:bb4a908c9dadbc3aac18860550e870f58e1a02c9f2c204fdf5693d73be061210"},
+    {file = "pylint-2.7.0-py3-none-any.whl", hash = "sha256:3ea3926700db399765db1faf53860f11e4e981a090646e9eacd01ca78e020579"},
+    {file = "pylint-2.7.0.tar.gz", hash = "sha256:2e0c6749d809985e4f181c336a8f89b2b797340d8049160bf95f35a3f0ecf6fc"},
 ]
 pyparsing = [
     {file = "pyparsing-2.4.7-py2.py3-none-any.whl", hash = "sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b"},
@@ -447,10 +441,6 @@ regex = [
 requests = [
     {file = "requests-2.25.1-py2.py3-none-any.whl", hash = "sha256:c210084e36a42ae6b9219e00e48287def368a26d03a048ddad7bfee44f75871e"},
     {file = "requests-2.25.1.tar.gz", hash = "sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804"},
-]
-six = [
-    {file = "six-1.15.0-py2.py3-none-any.whl", hash = "sha256:8b74bedcbbbaca38ff6d7491d76f2b06b3592611af620f8426e82dddb04a5ced"},
-    {file = "six-1.15.0.tar.gz", hash = "sha256:30639c035cdb23534cd4aa2dd52c3bf48f06e5f4a941509c8bafd8ce11080259"},
 ]
 toml = [
     {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},
