@@ -43,13 +43,13 @@ keywords = [
 
 [tool.poetry.dependencies]
 python = "^3.7"
-pylint = "^2.5.3"
+pylint = "^2.7.0"
 autohooks = ">=2.2.0"
 
 [tool.poetry.dev-dependencies]
 black = "20.8b1"
 pylint = "^2.4.4"
-pontos = "^0.3.1"
+pontos = "^21.2.0"
 autohooks-plugin-black = "^1.2.0"
 
 
