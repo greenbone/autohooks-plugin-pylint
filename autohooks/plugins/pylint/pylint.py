@@ -101,7 +101,7 @@ def precommit(config=None, **kwargs):  # pylint: disable=unused-argument
                 # Skip the first line that only shows ******** Module blah
                 for line in lint_errors[1:]:
                     out(line)
-            else:
-                ok('Linting {} was successful.'.format(str(f.path)))
+                continue
+            ok('Linting {} was successful.'.format(str(f.path)))
 
         return ret
