@@ -189,7 +189,7 @@ tomlkit = ">=0.5.11"
 
 [[package]]
 name = "pylint"
-version = "2.8.1"
+version = "2.8.2"
 description = "python code static checker"
 category = "main"
 optional = false
@@ -292,7 +292,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "b05e79b29a46878601abf74368cff97e1a06ccb96b7cb8e42eeeca8aac5f565c"
+content-hash = "912f7eaa457e16b22543e7bdd1c0c11d2d0c7b8c2eeb6d2390ea5f8f885a2f18"
 
 [metadata.files]
 appdirs = [
@@ -388,8 +388,8 @@ pontos = [
     {file = "pontos-21.4.0.tar.gz", hash = "sha256:83390bf5b7f0cd13f84043a64dbbcb3ac8a2c3d7723e84d8e7fc66316e8cd1f1"},
 ]
 pylint = [
-    {file = "pylint-2.8.1-py3-none-any.whl", hash = "sha256:4236b7284853b779a8add49aca287a5899245894995c5591d2b5839a32482330"},
-    {file = "pylint-2.8.1.tar.gz", hash = "sha256:ad1bff19c46bfc6d2aeba4de5f76570d253df4915d2043ba61dc6a96233c4bd6"},
+    {file = "pylint-2.8.2-py3-none-any.whl", hash = "sha256:f7e2072654a6b6afdf5e2fb38147d3e2d2d43c89f648637baab63e026481279b"},
+    {file = "pylint-2.8.2.tar.gz", hash = "sha256:586d8fa9b1891f4b725f587ef267abe2a1bad89d6b184520c7f07a253dd6e217"},
 ]
 pyparsing = [
     {file = "pyparsing-2.4.7-py2.py3-none-any.whl", hash = "sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b"},

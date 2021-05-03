@@ -43,7 +43,7 @@ keywords = [
 
 [tool.poetry.dependencies]
 python = "^3.7"
-pylint = "^2.8.1"
+pylint = "^2.8.2"
 autohooks = ">=2.2.0"
 
 [tool.poetry.dev-dependencies]
