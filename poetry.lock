@@ -46,7 +46,7 @@ black = "*"
 
 [[package]]
 name = "black"
-version = "21.4b0"
+version = "21.4b2"
 description = "The uncompromising code formatter."
 category = "dev"
 optional = false
@@ -56,7 +56,7 @@ python-versions = ">=3.6.2"
 appdirs = "*"
 click = ">=7.1.2"
 mypy-extensions = ">=0.4.3"
-pathspec = ">=0.6,<1"
+pathspec = ">=0.8.1,<1"
 regex = ">=2020.1.8"
 toml = ">=0.10.1"
 typed-ast = {version = ">=1.4.2", markers = "python_version < \"3.8\""}
@@ -292,7 +292,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "912f7eaa457e16b22543e7bdd1c0c11d2d0c7b8c2eeb6d2390ea5f8f885a2f18"
+content-hash = "c99ee3b5a4832683c320c08fe929f7407c0b5bfd08a2d1a3b3de6b3aceaf78d5"
 
 [metadata.files]
 appdirs = [
@@ -312,8 +312,8 @@ autohooks-plugin-black = [
     {file = "autohooks_plugin_black-1.2.0-py3-none-any.whl", hash = "sha256:5099f620e01d3fcfd70195e63f101d003528b40475e921829a9ebde000f2c5ee"},
 ]
 black = [
-    {file = "black-21.4b0-py3-none-any.whl", hash = "sha256:2db7040bbbbaa46247bfcc05c6efdebd7ebe50c1c3ca745ca6e0f6776438c96c"},
-    {file = "black-21.4b0.tar.gz", hash = "sha256:915d916c48646dbe8040d5265cff7111421a60a3dfe7f7e07273176a57c24a34"},
+    {file = "black-21.4b2-py3-none-any.whl", hash = "sha256:bff7067d8bc25eb21dcfdbc8c72f2baafd9ec6de4663241a52fb904b304d391f"},
+    {file = "black-21.4b2.tar.gz", hash = "sha256:fc9bcf3b482b05c1f35f6a882c079dc01b9c7795827532f4cc43c0ec88067bbc"},
 ]
 certifi = [
     {file = "certifi-2020.12.5-py2.py3-none-any.whl", hash = "sha256:719a74fb9e33b9bd44cc7f3a8d94bc35e4049deebe19ba7d8e108280cfd59830"},
