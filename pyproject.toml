@@ -47,7 +47,7 @@ pylint = "^2.8.3"
 autohooks = ">=2.2.0"
 
 [tool.poetry.dev-dependencies]
-black = "21.5b1"
+black = "21.5b2"
 pylint = "^2.4.4"
 pontos = "^21.4.0"
 autohooks-plugin-black = "^1.2.0"
