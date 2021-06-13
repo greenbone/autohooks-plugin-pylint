@@ -5,17 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
-### Added
+## [21.6.0] - 2021-06-13
 ### Changed
 * Reworked file by file linting, improved the code and the tests. [#54](https://github.com/greenbone/autohooks-plugin-pylint/pull/54)
 
-### Deprecated
-### Removed
-### Fixed
-
-[Unreleased]: https://github.com/greenbone/autohooks-plugin-pylint/compare/v20.11.0...HEAD
-
+[21.6.0]: https://github.com/greenbone/autohooks-plugin-pylint/compare/v20.11.0...v21.6.0
 
 ## [20.11.0] - 2020-11-09
 
