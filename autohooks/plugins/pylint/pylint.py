@@ -94,7 +94,7 @@ def precommit(config=None, **kwargs):  # pylint: disable=unused-argument
                 subprocess.run(cmd, check=True, capture_output=True)
             except subprocess.CalledProcessError as e:
                 ret = e.returncode
-                error('Linting error(s) found in {}:'.format(str(f.path)))
+                error(f'Linting error(s) found in {str(f.path)}:')
                 lint_errors = e.stdout.decode(
                     encoding=sys.getdefaultencoding(), errors='replace'
                 ).split('\n')
@@ -102,6 +102,6 @@ def precommit(config=None, **kwargs):  # pylint: disable=unused-argument
                 for line in lint_errors[1:]:
                     out(line)
                 continue
-            ok('Linting {} was successful.'.format(str(f.path)))
+            ok(f'Linting {str(f.path)} was successful.')
 
         return ret
