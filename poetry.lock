@@ -231,7 +231,7 @@ toml = ">=0.7.1"
 
 [[package]]
 name = "pyparsing"
-version = "3.0.4"
+version = "3.0.5"
 description = "Python parsing module"
 category = "main"
 optional = false
@@ -446,8 +446,8 @@ pylint = [
     {file = "pylint-2.8.3.tar.gz", hash = "sha256:0a049c5d47b629d9070c3932d13bff482b12119b6a241a93bc460b0be16953c8"},
 ]
 pyparsing = [
-    {file = "pyparsing-3.0.4-py3-none-any.whl", hash = "sha256:c0a7dfcd26825bd4453574c4e7ad04aa095975ce54d04f738fe3a8350fbd223a"},
-    {file = "pyparsing-3.0.4.tar.gz", hash = "sha256:e0df773d7fa2240322daae7805626dfc5f2d5effb34e1a7be2702c99cfb9f6b1"},
+    {file = "pyparsing-3.0.5-py3-none-any.whl", hash = "sha256:4881e3d2979f27b41a3a2421b10be9cbfa7ce2baa6c7117952222f8bbea6650c"},
+    {file = "pyparsing-3.0.5.tar.gz", hash = "sha256:9329d1c1b51f0f76371c4ded42c5ec4cc0be18456b22193e0570c2da98ed288b"},
 ]
 regex = [
     {file = "regex-2021.10.23-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:45b65d6a275a478ac2cbd7fdbf7cc93c1982d613de4574b56fd6972ceadb8395"},
