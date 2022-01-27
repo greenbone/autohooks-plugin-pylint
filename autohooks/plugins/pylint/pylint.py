@@ -1,4 +1,4 @@
-# Copyright (C) 2019 - 2021 Greenbone Networks GmbH
+# Copyright (C) 2019-2022 Greenbone Networks GmbH
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
@@ -105,3 +105,4 @@ def precommit(config=None, **kwargs):  # pylint: disable=unused-argument
             ok(f'Linting {str(f.path)} was successful.')
 
         return ret
+t
