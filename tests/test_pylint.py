@@ -42,50 +42,50 @@ def get_test_config_path(name):
 
 class AutohooksPylintTestCase(TestCase):
     def test_pylint_installed(self):
-        pylint = sys.modules['pylint']
-        sys.modules['pylint'] = None
+        pylint = sys.modules["pylint"]
+        sys.modules["pylint"] = None
         with self.assertRaises(Exception):
             check_pylint_installed()
-        sys.modules['pylint'] = pylint
+        sys.modules["pylint"] = pylint
 
     def test_get_pylint_arguments(self):
         args = get_pylint_arguments(config=None)
         self.assertEqual(args, DEFAULT_ARGUMENTS)
 
     def test_get_pylint_config(self):
-        config_path = get_test_config_path('pyproject.test.toml')
+        config_path = get_test_config_path("pyproject.test.toml")
         self.assertTrue(config_path.is_file())
 
         autohooksconfig = load_config_from_pyproject_toml(config_path)
         self.assertTrue(autohooksconfig.has_config())
 
         pylint_config = get_pylint_config(autohooksconfig.get_config())
-        self.assertEqual(pylint_config.get_value('foo'), 'bar')
+        self.assertEqual(pylint_config.get_value("foo"), "bar")
 
     def test_ensure_iterable(self):
-        foo = 'bar'  # pylint: disable=blacklisted-name
+        foo = "bar"  # pylint: disable=blacklisted-name
         bar = ensure_iterable(foo)  # pylint: disable=blacklisted-name
-        self.assertEqual(bar, ['bar'])
+        self.assertEqual(bar, ["bar"])
 
-        foo = ['bar']
+        foo = ["bar"]
         bar = ensure_iterable(foo)  # pylint: disable=blacklisted-name
-        self.assertEqual(bar, ['bar'])
+        self.assertEqual(bar, ["bar"])
 
     def test_get_include_from_config(self):
         include = get_include_from_config(config=None)
         self.assertEqual(include, DEFAULT_INCLUDE)
 
-    @patch('autohooks.plugins.pylint.pylint.ok')
+    @patch("autohooks.plugins.pylint.pylint.ok")
     def test_precommit_no_files(self, _ok_mock):
         ret = precommit()
         self.assertFalse(ret)
 
     # these Terminal output functions don't run in the CI ...
     # @patch('sys.stdout', new_callable=StringIO)
-    @patch('autohooks.plugins.pylint.pylint.ok')
-    @patch('autohooks.plugins.pylint.pylint.out')
-    @patch('autohooks.plugins.pylint.pylint.error')
-    @patch('autohooks.plugins.pylint.pylint.get_staged_status')
+    @patch("autohooks.plugins.pylint.pylint.ok")
+    @patch("autohooks.plugins.pylint.pylint.out")
+    @patch("autohooks.plugins.pylint.pylint.error")
+    @patch("autohooks.plugins.pylint.pylint.get_staged_status")
     def test_precommit_errors(
         self,
         staged_mock,
@@ -109,12 +109,12 @@ print(out.decode(encoding='utf-8'))
 print(err.decode(encoding='utf-8'))"""
 
         test_file = Path(__file__).parent / "lint_test.py"
-        with open(test_file, 'a') as fp:
+        with open(test_file, "a") as fp:
             fp.writelines(code)
 
         staged_mock.return_value = [
             StatusEntry(
-                status_string='M  lint_test.py',
+                status_string="M  lint_test.py",
                 root_path=Path(__file__).parent,
             )
         ]
@@ -127,10 +127,10 @@ print(err.decode(encoding='utf-8'))"""
 
     # these Terminal output functions don't run in the CI ...
     # @patch('sys.stdout', new_callable=StringIO)
-    @patch('autohooks.plugins.pylint.pylint.ok')
-    @patch('autohooks.plugins.pylint.pylint.out')
-    @patch('autohooks.plugins.pylint.pylint.error')
-    @patch('autohooks.plugins.pylint.pylint.get_staged_status')
+    @patch("autohooks.plugins.pylint.pylint.ok")
+    @patch("autohooks.plugins.pylint.pylint.out")
+    @patch("autohooks.plugins.pylint.pylint.error")
+    @patch("autohooks.plugins.pylint.pylint.get_staged_status")
     def test_precommit_ok(
         self,
         staged_mock,
@@ -140,7 +140,7 @@ print(err.decode(encoding='utf-8'))"""
     ):
         staged_mock.return_value = [
             StatusEntry(
-                status_string='M  test_pylint.py',
+                status_string="M  test_pylint.py",
                 root_path=Path(__file__).parent,
             )
         ]

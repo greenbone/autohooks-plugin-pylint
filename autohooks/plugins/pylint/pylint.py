@@ -22,8 +22,8 @@ from autohooks.api import error, ok, out
 from autohooks.api.git import get_staged_status, stash_unstaged_changes
 from autohooks.api.path import match
 
-DEFAULT_INCLUDE = ('*.py',)
-DEFAULT_ARGUMENTS = ['--output-format=colorized']
+DEFAULT_INCLUDE = ("*.py",)
+DEFAULT_ARGUMENTS = ["--output-format=colorized"]
 
 
 def check_pylint_installed():
@@ -31,13 +31,13 @@ def check_pylint_installed():
         import pylint  # pylint: disable=import-outside-toplevel, disable=unused-import
     except ImportError as e:
         raise Exception(
-            'Could not find pylint. Please add pylint to your python '
-            'environment'
+            "Could not find pylint. Please add pylint to your python "
+            "environment"
         ) from e
 
 
 def get_pylint_config(config):
-    return config.get('tool').get('autohooks').get('plugins').get('pylint')
+    return config.get("tool").get("autohooks").get("plugins").get("pylint")
 
 
 def ensure_iterable(value):
@@ -53,7 +53,7 @@ def get_include_from_config(config):
 
     pylint_config = get_pylint_config(config)
     include = ensure_iterable(
-        pylint_config.get_value('include', DEFAULT_INCLUDE)
+        pylint_config.get_value("include", DEFAULT_INCLUDE)
     )
 
     return include
@@ -65,7 +65,7 @@ def get_pylint_arguments(config):
 
     pylint_config = get_pylint_config(config)
     arguments = ensure_iterable(
-        pylint_config.get_value('arguments', DEFAULT_ARGUMENTS)
+        pylint_config.get_value("arguments", DEFAULT_ARGUMENTS)
     )
 
     return arguments
@@ -79,7 +79,7 @@ def precommit(config=None, **kwargs):  # pylint: disable=unused-argument
     files = [f for f in get_staged_status() if match(f.path, include)]
 
     if not files:
-        ok('No staged files to lint.')
+        ok("No staged files to lint.")
         return 0
 
     arguments = get_pylint_arguments(config)
@@ -87,21 +87,21 @@ def precommit(config=None, **kwargs):  # pylint: disable=unused-argument
     with stash_unstaged_changes(files):
         ret = 0
         for f in files:
-            cmd = ['pylint']
+            cmd = ["pylint"]
             cmd.extend(arguments)
             cmd.append(str(f.absolute_path()))
             try:
                 subprocess.run(cmd, check=True, capture_output=True)
             except subprocess.CalledProcessError as e:
                 ret = e.returncode
-                error(f'Linting error(s) found in {str(f.path)}:')
+                error(f"Linting error(s) found in {str(f.path)}:")
                 lint_errors = e.stdout.decode(
-                    encoding=sys.getdefaultencoding(), errors='replace'
-                ).split('\n')
+                    encoding=sys.getdefaultencoding(), errors="replace"
+                ).split("\n")
                 # Skip the first line that only shows ******** Module blah
                 for line in lint_errors[1:]:
                     out(line)
                 continue
-            ok(f'Linting {str(f.path)} was successful.')
+            ok(f"Linting {str(f.path)} was successful.")
 
         return ret
