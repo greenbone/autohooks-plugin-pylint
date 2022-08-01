@@ -18,9 +18,9 @@
 import subprocess
 import sys
 
-from autohooks.api import ok, error, out
-from autohooks.api.path import match
+from autohooks.api import error, ok, out
 from autohooks.api.git import get_staged_status, stash_unstaged_changes
+from autohooks.api.path import match
 
 DEFAULT_INCLUDE = ('*.py',)
 DEFAULT_ARGUMENTS = ['--output-format=colorized']
