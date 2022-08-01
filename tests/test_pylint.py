@@ -17,16 +17,12 @@
 # pylint: disable-all
 
 import sys
-
-from io import StringIO
 from pathlib import Path
 from unittest import TestCase
-from unittest.mock import patch, MagicMock, Mock
+from unittest.mock import patch
 
+from autohooks.api.git import StatusEntry
 from autohooks.config import load_config_from_pyproject_toml
-from autohooks.terminal import Terminal
-from autohooks.api import _set_terminal
-from autohooks.api.git import Status, StatusEntry, get_staged_status
 
 from autohooks.plugins.pylint.pylint import (
     DEFAULT_ARGUMENTS,
