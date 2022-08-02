@@ -71,7 +71,9 @@ def get_pylint_arguments(config):
     return arguments
 
 
-def precommit(config=None, **kwargs):  # pylint: disable=unused-argument
+def precommit(
+    config=None, report_progress=None, **kwargs
+):  # pylint: disable=unused-argument
     check_pylint_installed()
 
     include = get_include_from_config(config)
@@ -81,6 +83,9 @@ def precommit(config=None, **kwargs):  # pylint: disable=unused-argument
     if not files:
         ok("No staged files to lint.")
         return 0
+
+    if report_progress:
+        report_progress.init(len(files))
 
     arguments = get_pylint_arguments(config)
 
@@ -95,13 +100,22 @@ def precommit(config=None, **kwargs):  # pylint: disable=unused-argument
             except subprocess.CalledProcessError as e:
                 ret = e.returncode
                 error(f"Linting error(s) found in {str(f.path)}:")
-                lint_errors = e.stdout.decode(
-                    encoding=sys.getdefaultencoding(), errors="replace"
-                ).split("\n")
+                lint_errors = (
+                    e.stdout.decode(
+                        encoding=sys.getdefaultencoding(), errors="replace"
+                    )
+                    .rstrip()
+                    .split("\n")
+                )
                 # Skip the first line that only shows ******** Module blah
                 for line in lint_errors[1:]:
                     out(line)
+
                 continue
+            finally:
+                if report_progress:
+                    report_progress.progress()
+
             ok(f"Linting {str(f.path)} was successful.")
 
         return ret
