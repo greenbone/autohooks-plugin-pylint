@@ -52,7 +52,7 @@ autohooks = ">=2.2.0"
 black = "22.6.0"
 pylint = "^2.4.4"
 pontos = "^22.8.1"
-autohooks-plugin-black = "^22.7.0"
+autohooks-plugin-black = "^22.8.0"
 
 
 [tool.black]
