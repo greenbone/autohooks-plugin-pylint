@@ -114,7 +114,7 @@ def precommit(
                 continue
             finally:
                 if report_progress:
-                    report_progress.progress()
+                    report_progress.update()
 
             ok(f"Linting {str(f.path)} was successful.")
 
