@@ -57,7 +57,6 @@ class AutohooksPylintTestCase(TestCase):
         self.assertTrue(config_path.is_file())
 
         autohooksconfig = load_config_from_pyproject_toml(config_path)
-        self.assertTrue(autohooksconfig.has_config())
 
         pylint_config = get_pylint_config(autohooksconfig.get_config())
         self.assertEqual(pylint_config.get_value("foo"), "bar")
