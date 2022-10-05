@@ -15,15 +15,17 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from configparser import ConfigParser
 import subprocess
 import sys
+from typing import Any, List, Tuple, Union
 
 from autohooks.api import error, ok, out
 from autohooks.api.git import get_staged_status, stash_unstaged_changes
 from autohooks.api.path import match
+from autohooks.config import AutohooksConfig
+from autohooks.precommit.run import ReportProgress
 
-DEFAULT_INCLUDE = ("*.py",)
+DEFAULT_INCLUDE = ["*.py"]
 DEFAULT_ARGUMENTS = ["--output-format=colorized"]
 
 
@@ -37,18 +39,18 @@ def check_pylint_installed() -> None:
         ) from e
 
 
-def get_pylint_config(config : ConfigParser) :
+def get_pylint_config(config : AutohooksConfig) :
     return config.get("tool").get("autohooks").get("plugins").get("pylint")
 
 
-def ensure_iterable(value) -> list:
+def ensure_iterable(value) -> List[Any]:
     if isinstance(value, str):
         return [value]
 
     return value
 
 
-def get_include_from_config(config : ConfigParser) -> tuple:
+def get_include_from_config(config : AutohooksConfig) -> List[Any]:
     if not config:
         return DEFAULT_INCLUDE
 
@@ -60,7 +62,7 @@ def get_include_from_config(config : ConfigParser) -> tuple:
     return include
 
 
-def get_pylint_arguments(config : ConfigParser) -> list:
+def get_pylint_arguments(config : AutohooksConfig) -> List[Any]:
     if not config:
         return DEFAULT_ARGUMENTS
 
@@ -73,7 +75,7 @@ def get_pylint_arguments(config : ConfigParser) -> list:
 
 
 def precommit(
-    config=None : ConfigParser, report_progress=None, **kwargs
+    config: AutohooksConfig = None, report_progress : ReportProgress = None, **kwargs
 ) -> int:  # pylint: disable=unused-argument
     check_pylint_installed()
 
