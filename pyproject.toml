@@ -78,3 +78,6 @@ pre-commit = ['autohooks.plugins.black', 'autohooks.plugins.pylint']
 
 [tool.pontos.version]
 version-module-file = "autohooks/plugins/pylint/__version__.py"
+
+[tool.mypy]
+ignore_missing_imports = true
