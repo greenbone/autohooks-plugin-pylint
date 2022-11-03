@@ -49,6 +49,7 @@ pylint = "^2.8.3"
 autohooks = ">=2.2.0"
 
 [tool.poetry.dev-dependencies]
+mypy = ">=0.981"
 pontos = ">=22.8.1"
 autohooks-plugin-black = ">=22.7.0"
 
@@ -78,3 +79,7 @@ pre-commit = ['autohooks.plugins.black', 'autohooks.plugins.pylint']
 
 [tool.pontos.version]
 version-module-file = "autohooks/plugins/pylint/__version__.py"
+
+
+[tool.mypy]
+ignore_missing_imports = true
