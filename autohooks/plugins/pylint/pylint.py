@@ -17,12 +17,12 @@
 
 import subprocess
 import sys
-from typing import List, Union, Iterable
+from typing import List, Union, Iterable, Optional
 
 from autohooks.api import error, ok, out
 from autohooks.api.git import get_staged_status, stash_unstaged_changes
 from autohooks.api.path import match
-from autohooks.config import AutohooksConfig
+from autohooks.config import Config
 from autohooks.precommit.run import ReportProgress
 
 DEFAULT_INCLUDE = ("*.py",)
@@ -39,7 +39,7 @@ def check_pylint_installed() -> None:
         ) from e
 
 
-def get_pylint_config(config: AutohooksConfig) -> AutohooksConfig:
+def get_pylint_config(config: Config) -> Config:
     return config.get("tool").get("autohooks").get("plugins").get("pylint")
 
 
@@ -50,7 +50,7 @@ def ensure_iterable(value: Union[str, List[str]]) -> List[str]:
     return value
 
 
-def get_include_from_config(config: AutohooksConfig) -> Iterable[str]:
+def get_include_from_config(config: Optional[Config]) -> Iterable[str]:
     if not config:
         return DEFAULT_INCLUDE
 
@@ -62,7 +62,7 @@ def get_include_from_config(config: AutohooksConfig) -> Iterable[str]:
     return include
 
 
-def get_pylint_arguments(config: AutohooksConfig) -> Iterable[str]:
+def get_pylint_arguments(config: Optional[Config]) -> Iterable[str]:
     if not config:
         return DEFAULT_ARGUMENTS
 
@@ -75,8 +75,8 @@ def get_pylint_arguments(config: AutohooksConfig) -> Iterable[str]:
 
 
 def precommit(
-    config: AutohooksConfig = None,
-    report_progress: ReportProgress = None,
+    config: Optional[Config] = None,
+    report_progress: Optional[ReportProgress] = None,
     **kwargs,  # pylint: disable=unused-argument
 ) -> int:
     check_pylint_installed()
