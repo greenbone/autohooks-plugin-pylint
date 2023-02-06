@@ -92,7 +92,6 @@ class AutohooksPylintTestCase(TestCase):
         _out_mock,
         _ok_mock,  # _mock_stdout
     ):
-
         code = """from io import StringIO, BytesIO, FileIO
 import sys
 cmd = ['pylint', 'autohooks/plugins/pylint/pylint.py']
