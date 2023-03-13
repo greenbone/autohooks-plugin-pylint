@@ -1,7 +1,7 @@
 [build-system]
 requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
-authors = ["Greenbone Networks GmbH <info@greenbone.net>"]
+authors = ["Greenbone AG <info@greenbone.net>"]
 readme = "README.md"
 license = "AGPL-3.0-or-later"
 
@@ -10,7 +10,7 @@ name = "autohooks-plugin-pylint"
 version = "22.8.2.dev1"
 description = "An autohooks plugin for python code linting via pylint"
 license = "GPL-3.0-or-later"
-authors = ["Greenbone Networks GmbH <info@greenbone.net>"]
+authors = ["Greenbone AG <info@greenbone.net>"]
 readme = "README.md"
 homepage = "https://github.com/greenbone/autohooks-plugin-pylint"
 repository = "https://github.com/greenbone/autohooks-plugin-pylint"
