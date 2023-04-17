@@ -33,7 +33,7 @@ def check_pylint_installed() -> None:
     try:
         import pylint  # pylint: disable=import-outside-toplevel, disable=unused-import
     except ImportError as e:
-        raise Exception(
+        raise RuntimeError(
             "Could not find pylint. Please add pylint to your python "
             "environment"
         ) from e
