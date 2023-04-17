@@ -17,7 +17,7 @@
 
 import subprocess
 import sys
-from typing import List, Union, Iterable, Optional
+from typing import Iterable, List, Optional, Union
 
 from autohooks.api import error, ok, out
 from autohooks.api.git import get_staged_status, stash_unstaged_changes
