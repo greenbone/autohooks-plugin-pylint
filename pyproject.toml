@@ -54,6 +54,7 @@ coverage = "^7.2.3"
 mypy = ">=0.981"
 pontos = ">=22.8.1"
 autohooks-plugin-black = ">=22.7.0"
+autohooks-plugin-isort = ">=22.8.0"
 
 [tool.black]
 line-length = 80
@@ -73,14 +74,16 @@ exclude = '''
 )/
 '''
 
+[tool.isort]
+profile = "black"
+line_length = 80
+
 [tool.autohooks]
 mode = "poetry"
-pre-commit = ['autohooks.plugins.black', 'autohooks.plugins.pylint']
-
+pre-commit = ['autohooks.plugins.black', 'autohooks.plugins.isort', 'autohooks.plugins.pylint']
 
 [tool.pontos.version]
 version-module-file = "autohooks/plugins/pylint/__version__.py"
-
 
 [tool.mypy]
 ignore_missing_imports = true
