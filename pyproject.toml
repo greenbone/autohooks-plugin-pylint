@@ -1,9 +1,6 @@
 [build-system]
-requires = ["poetry>=0.12"]
-build-backend = "poetry.masonry.api"
-authors = ["Greenbone AG <info@greenbone.net>"]
-readme = "README.md"
-license = "AGPL-3.0-or-later"
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "autohooks-plugin-pylint"
