@@ -81,4 +81,5 @@ pre-commit = ['autohooks.plugins.black', 'autohooks.plugins.isort', 'autohooks.p
 version-module-file = "autohooks/plugins/pylint/__version__.py"
 
 [tool.mypy]
+files = "autohooks"
 ignore_missing_imports = true
