@@ -14,10 +14,7 @@ linting via [pylint](https://github.com/PyCQA/pylint).
 You can install the latest stable release of autohooks-plugin-pylint from the
 Python Package Index using [pip](https://pip.pypa.io/):
 
-    pip install autohooks-plugin-pylint
-
-Note the `pip` refers to the Python 3 package manager. In a environment where
-Python 2 is also available the correct command may be `pip3`.
+    python3 -m pip install autohooks-plugin-pylint
 
 ### Install using poetry
 
@@ -76,6 +73,6 @@ first.
 
 ## License
 
-Copyright (C) 2019 - 2022 [Greenbone AG](https://www.greenbone.net/)
+Copyright (C) 2019 - 2023 [Greenbone AG](https://www.greenbone.net/)
 
 Licensed under the [GNU General Public License v3.0 or later](LICENSE).
