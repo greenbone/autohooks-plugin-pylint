@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: pypi
-      url: greenbone/workflows/.github/workflows/deploy-pypi.yml@main
+      url: https://pypi.org/project/autohooks-plugin-pylint/
     steps:
       - name: Build and publish to PyPI
         uses: greenbone/actions/pypi-upload@v3
