@@ -192,14 +192,14 @@ markers = {main = "platform_system == \"Windows\" or sys_platform == \"win32\"",
 
 [[package]]
 name = "colorful"
-version = "0.5.7"
+version = "0.5.8"
 description = "Terminal string styling done right, in Python."
 optional = false
 python-versions = "*"
 groups = ["main", "dev"]
 files = [
-    {file = "colorful-0.5.7-py2.py3-none-any.whl", hash = "sha256:495dd3a23151a9568cee8a90fc1174c902ad7ef06655f50b6bddf9e80008da69"},
-    {file = "colorful-0.5.7.tar.gz", hash = "sha256:c5452179b56601c178b03d468a5326cc1fe37d9be81d24d0d6bdab36c4b93ad8"},
+    {file = "colorful-0.5.8-py2.py3-none-any.whl", hash = "sha256:a9381fdda3337fbaba5771991020abc69676afa102646650b759927892875992"},
+    {file = "colorful-0.5.8.tar.gz", hash = "sha256:bb16502b198be2f1c42ba3c52c703d5f651d826076817185f0294c1a549a7445"},
 ]
 
 [package.dependencies]
