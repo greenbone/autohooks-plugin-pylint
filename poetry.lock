@@ -1120,18 +1120,18 @@ files = [
 
 [[package]]
 name = "shtab"
-version = "1.8.1"
+version = "1.8.2"
 description = "Automagic shell tab completion for Python CLI applications"
 optional = false
 python-versions = ">=3.9"
 groups = ["main", "dev"]
 files = [
-    {file = "shtab-1.8.1-py3-none-any.whl", hash = "sha256:4fc418e0173e66385e4605044a26a4910e73dde2dc23e809acc2f0275e842426"},
-    {file = "shtab-1.8.1.tar.gz", hash = "sha256:3edaf857ba164a0d7bb64e958eab8d6756d5aee3949c7f36a7e779bf1ce3b897"},
+    {file = "shtab-1.8.2-py3-none-any.whl", hash = "sha256:8b8e15af9d8add0894d3a0b2aa9ea772406f68a7997b5934b512cf21ceca7b3c"},
+    {file = "shtab-1.8.2.tar.gz", hash = "sha256:fa11e951991115c4facb25f81836e76e2b2f190cab9b6ec950def12ba7b23807"},
 ]
 
 [package.extras]
-dev = ["pytest (>=6)", "pytest-cov", "pytest-timeout"]
+dev = ["pytest (>=6)", "pytest-cov"]
 
 [[package]]
 name = "six"
