@@ -235,18 +235,15 @@ files = [
 
 [[package]]
 name = "click"
-version = "8.4.2"
+version = "8.5.0"
 description = "Composable command line interface toolkit"
 optional = false
 python-versions = ">=3.10"
 groups = ["dev"]
 files = [
-    {file = "click-8.4.2-py3-none-any.whl", hash = "sha256:e6f9f66136c816745b9d65817da91d61d957fb16e02e4dcd0552553c5a197b76"},
-    {file = "click-8.4.2.tar.gz", hash = "sha256:9a6cea6e60b17ebe0a44c5cc636d94f09bd66142c1cd7d8b4cd731c4917a15f6"},
+    {file = "click-8.5.0-py3-none-any.whl", hash = "sha256:255bc9599cf7748b4b1a446ccc735421bd08a2ae529a8b88597d3de5664ee360"},
+    {file = "click-8.5.0.tar.gz", hash = "sha256:ba0d2089de75ea0310e2dde03160e6ca10009947fb95a182f9b54021bb272e34"},
 ]
-
-[package.dependencies]
-colorama = {version = "*", markers = "platform_system == \"Windows\""}
 
 [[package]]
 name = "colorama"
@@ -1086,38 +1083,39 @@ re2 = ["google-re2 (>=1.1)"]
 
 [[package]]
 name = "platformdirs"
-version = "4.11.3"
+version = "4.11.5"
 description = "A small Python package for determining appropriate platform-specific dirs, e.g. a `user data dir`."
 optional = false
 python-versions = ">=3.10"
 groups = ["main", "dev"]
 files = [
-    {file = "platformdirs-4.11.3-py3-none-any.whl", hash = "sha256:5ed065d443751de711da036041a7a214122efc4a4de393b3f4137ba5576540e7"},
-    {file = "platformdirs-4.11.3.tar.gz", hash = "sha256:66a73d38a849810252df809a3d8bcbda8e26f6c189920e7535ad608a48dbb5ab"},
+    {file = "platformdirs-4.11.5-py3-none-any.whl", hash = "sha256:89f8d42695853b89c7170bd49bc3dc593f98a71e695ede88e06a3b247bc4563b"},
+    {file = "platformdirs-4.11.5.tar.gz", hash = "sha256:e8b31f4f8bcbbedef91a6b57a706255e4f148d2a4e01648382a0a47342539173"},
 ]
 
 [[package]]
 name = "pontos"
-version = "26.5.0"
+version = "26.8.4"
 description = "Common utilities and tools maintained by Greenbone AG"
 optional = false
 python-versions = "<4.0,>=3.10"
 groups = ["main", "dev"]
 files = [
-    {file = "pontos-26.5.0-py3-none-any.whl", hash = "sha256:a14588cdee13199086fce4b0053042e51a76aba6eb1ce811a8213011ecfa6119"},
-    {file = "pontos-26.5.0.tar.gz", hash = "sha256:2ea68100a803a08cb2136126716fd43c668151c6b461c4c21b283b9a7f5e82a3"},
+    {file = "pontos-26.8.4-py3-none-any.whl", hash = "sha256:70ba8eabbbcf2e1632533b6c89c0bcc8acdb55439404a6b11c4b4a576281e488"},
+    {file = "pontos-26.8.4.tar.gz", hash = "sha256:c26e26c27a6bf4251f58f4495ea076b6f24d683d3929c8615cbfdc585fcba115"},
 ]
 
 [package.dependencies]
 colorful = ">=0.5.4"
 httpx = {version = ">=0.23", extras = ["http2"]}
 lxml = ">=4.9.0"
-packaging = ">=20.3"
+packaging = ">=26.3"
 python-dateutil = ">=2.8.2"
 rich = ">=12.4.4"
 semver = ">=2.13"
-shtab = ">=1.7.0"
-tomlkit = ">=0.5.11"
+shtab = ">=1.11.0"
+tomlkit = ">=0.15.1"
+typing-extensions = {version = ">=4.0", markers = "python_version < \"3.12\""}
 
 [[package]]
 name = "pygments"
@@ -1267,18 +1265,18 @@ files = [
 
 [[package]]
 name = "shtab"
-version = "1.11.0"
+version = "1.12.0"
 description = "Automagic shell tab completion for Python CLI applications"
 optional = false
 python-versions = ">=3.9"
 groups = ["main", "dev"]
 files = [
-    {file = "shtab-1.11.0-py3-none-any.whl", hash = "sha256:87c4ccd586a0d98f41c5d15a4a2da4957ea67ba2ec588561fdb803b612bfd032"},
-    {file = "shtab-1.11.0.tar.gz", hash = "sha256:57df8a646484b3f00517a42934b173554f827976a77b605ceb6a1a0e649e9266"},
+    {file = "shtab-1.12.0-py3-none-any.whl", hash = "sha256:e377c1451b68ce40abe63b378a389002f0befb2113796a80b047a2bfba0cfb68"},
+    {file = "shtab-1.12.0.tar.gz", hash = "sha256:46d0b07e6820e3eaaaf95e437a6e89f66a6141dd8bd92da15321939ac692d44d"},
 ]
 
 [package.extras]
-dev = ["pytest (>=6)", "pytest-cov"]
+dev = ["click", "pytest (>=6)", "pytest-cov"]
 
 [[package]]
 name = "six"
@@ -1378,4 +1376,4 @@ markers = {main = "python_version <= \"3.12\""}
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.10"
-content-hash = "c254d0b9480a45cc28a61ac2990dee2cdb58a7952ce68b7f2b3bc46971ed2be4"
+content-hash = "86acc6833759c5c97d942967d8ab3421e7efa3b610f0a72317be51441067e8db"
