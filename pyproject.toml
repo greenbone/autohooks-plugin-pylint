@@ -37,8 +37,8 @@ pylint = ">=2.8.3"
 autohooks = ">=2.2.0"
 
 [tool.poetry.dev-dependencies]
-coverage = ">=7.16.1"
-pontos = ">=26.9.0"
+coverage = ">=7.16.2"
+pontos = ">=26.9.2"
 autohooks-plugin-black = ">=22.7.0"
 autohooks-plugin-isort = ">=22.8.0"
 autohooks-plugin-mypy = ">=22.7.0"
