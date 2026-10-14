@@ -77,7 +77,7 @@ def get_pylint_arguments(config: Optional[Config]) -> Iterable[str]:
 def precommit(
     config: Optional[Config] = None,
     report_progress: Optional[ReportProgress] = None,
-    **kwargs,  # pylint: disable=unused-argument
+    **_kwargs,
 ) -> int:
     check_pylint_installed()
 
